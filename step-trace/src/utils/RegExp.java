@@ -29,7 +29,7 @@ public class RegExp {
 	}
 	
 	// Example: ADVANCED_FACE ( 'NONE',  #2 , #130, .F. ), 2 ->  #2
-	// without parantheses inside
+	// without parentheses inside
 	public static String getParameter(String s, int paramNum, int totalParamsCount) {
 		Matcher m = totalParamsCount == 2 ? twoParameters.matcher(s) : totalParamsCount == 3 ? threeParameters.matcher(s)
 				: totalParamsCount == 4 ? fourParameters.matcher(s) : totalParamsCount == 5 ? fiveParameters.matcher(s) : null;

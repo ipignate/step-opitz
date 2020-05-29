@@ -27,14 +27,15 @@ public class EdgeCurve extends AbstractEntity implements Cloneable {
 				RegExp.getParameter(edgeCurveVal, 3, 5), linesMap));
 		String edgeGeomId = RegExp.getParameter(edgeCurveVal, 4, 5);
 		String edgeGeomVal = linesMap.get(edgeGeomId);
+		
 		if (edgeGeomVal.startsWith(Line._LINE)) {
 			eg = new Line(edgeGeomId);
 		} else if (edgeGeomVal.startsWith(Circle._CIRCLE)) {
 			eg = new Circle(edgeGeomId);
 		} else if (edgeGeomVal.startsWith(Ellipse._ELLIPSE)) {
 			eg = new Ellipse(edgeGeomId);			
-		} else if (edgeGeomVal.startsWith("B_SPLINE_CURVE_WITH_KNOTS") || edgeGeomVal.startsWith("(B_SPLINE_CURVE")) {
-			// empty
+		} else if (edgeGeomVal.startsWith(BSplineCurveKnots._B_SPLINE_CURVE_WITH_KNOTS)) {
+			eg = new BSplineCurveKnots(edgeGeomId);
 		} else {
 			System.out.println("___not found edge geometry " + edgeGeomId);
 		}

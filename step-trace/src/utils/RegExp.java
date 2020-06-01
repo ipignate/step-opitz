@@ -1,6 +1,9 @@
 package utils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
+
 
 public class RegExp {
 	
@@ -10,6 +13,7 @@ public class RegExp {
 	private static Pattern threeParameters = Pattern.compile("\\w+\\s*\\((.+),(.+),(.+)\\)");
 	private static Pattern fourParameters = Pattern.compile("\\w+\\s*\\((.+),(.+),(.+),(.+)\\)");
 	private static Pattern fiveParameters = Pattern.compile("\\w+\\s*\\((.+),(.+),(.+),(.+),(.+)\\)");
+	private static Pattern hashParams = Pattern.compile("#[0-9]+");
 	
 	public static String getValueBetweenParentheses(String s) {
 		Matcher m = parantheses.matcher(s);
@@ -38,6 +42,18 @@ public class RegExp {
 		}
 		return null;
 	}
-
-
+	
+	public static ArrayList<String> getHashParams(String s) {
+		ArrayList<String>cp = new ArrayList<String>();
+		Matcher m = hashParams.matcher(s);
+		
+		while (m.find()) {
+			String word = ""; // reset word for every finding
+			for(int i=m.start();i<m.end();i++) {
+					word=word+s.charAt(i);
+			}
+			cp.add(word);
+		}
+	    return cp;
+	}
 }
